@@ -1,0 +1,60 @@
+﻿@* @{
+    ViewData["Title"] = "Assign Role";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Assign Role</h1>
+
+<form asp-action="Assign" method="post">
+    <div class="form-group">
+        <label for="userId">User:</label>
+        <select id="userId" name="userId" class="form-control">
+            @foreach (var user in (SelectList)ViewData["Users"])
+            {
+                <option value="@user.Value">@user.Text</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="roleName">Role:</label>
+        <select id="roleName" name="roleName" class="form-control">
+            @foreach (var role in (SelectList)ViewData["Roles"])
+            {
+                <option value="@role.Value">@role.Text</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Assign Role</button>
+</form>
+ *@
+
+@{
+    ViewData["Title"] = "Назначение роли";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mx-auto p-4" style="max-width: 400px;">
+    <h1 class="text-center">Назначить роль</h1>
+
+    <form asp-action="Assign" method="post">
+        <div class="form-group">
+            <label for="userId">Выберите пользователя:</label>
+            <select id="userId" name="userId" class="form-control">
+                @foreach (var user in (SelectList)ViewData["Users"])
+                {
+                    <option value="@user.Value">@user.Text</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="roleName">Выберите роль:</label>
+            <select id="roleName" name="roleName" class="form-control">
+                @foreach (var role in (SelectList)ViewData["Roles"])
+                {
+                    <option value="@role.Value">@role.Text</option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Назначить роль</button>
+    </form>
+</div>

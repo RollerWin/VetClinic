@@ -1,0 +1,41 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model WebApplication2.Models.Service
+@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<IdentityUser> SignInManager
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Детали</h1>
+
+<div>
+    <h4>Информация о книге</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-md-4">
+            <img src="~/images/@Html.DisplayFor(model => model.ImagePath)" class="card-img-top img-fluid">
+        </dt>
+        <dd class="col-md-8">
+            <h2>@Html.DisplayFor(model => model.Title)</h2>
+            <p>@Html.DisplayFor(model => model.Description)</p>
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+            </dl>
+        </dd>
+    </dl>
+</div>
+
+<div>
+    @if (SignInManager.Context.User.IsInRole("admin"))
+    {
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-">Edit</a>
+    }
+    <a asp-controller="Home" asp-action="Catalog" class="btn btn-secondary">Вернуться в каталог</a>
+</div>
